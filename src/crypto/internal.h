@@ -126,11 +126,11 @@
 #endif
 
 #if !defined(__cplusplus)
-#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
-#include <stdalign.h>
-#elif defined(_MSC_VER) && !defined(__clang__)
+#if defined(_MSC_VER) && !defined(__clang__)
 #define alignas(x) __declspec(align(x))
 #define alignof __alignof
+#elif defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+#include <stdalign.h>
 #else
 // With the exception of MSVC, we require C11 to build the library. C11 is a
 // prerequisite for improved refcounting performance. All our supported C
